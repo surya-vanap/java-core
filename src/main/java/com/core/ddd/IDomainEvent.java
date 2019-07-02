@@ -1,4 +1,4 @@
-package com.ddd.events;
+package com.core.ddd;
 
 public interface IDomainEvent {
 

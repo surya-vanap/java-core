@@ -1,4 +1,4 @@
-package com.ddd.objects;
+package com.core.ddd;
 
 import static java.util.Objects.requireNonNull;
 

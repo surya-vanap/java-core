@@ -1,12 +1,10 @@
-package com.ddd.objects;
+package com.core.ddd;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import com.ddd.events.IDomainEvent;
 
 public abstract class AggregateRoot<K> extends Entity<K> {
 
