@@ -11,6 +11,10 @@ import org.junit.Test;
 import com.core.ddd.ValueObject;
 import com.core.utils.Result;
 
+/**
+ * Tests for {@link ValueObject} class
+ *
+ */
 public class ValueObjectTest {
 
 	/**
@@ -45,7 +49,7 @@ public class ValueObjectTest {
 	 * This tests that two age objects with same value are equal
 	 */
 	@Test
-	public void test_equals() {
+	public void test_equals_same_value() {
 		// arrange
 		final Age age1 = Age.Create(10).getValue();
 		final Age age2 = Age.Create(10).getValue();
@@ -54,6 +58,21 @@ public class ValueObjectTest {
 
 		// assert
 		assertTrue(age1.equals(age2));
+	}
+
+	/**
+	 * This tests that two age objects with different values are equal
+	 */
+	@Test
+	public void test_equals_different_values() {
+		// arrange
+		final Age age1 = Age.Create(10).getValue();
+		final Age age2 = Age.Create(11).getValue();
+
+		// act
+
+		// assert
+		assertFalse(age1.equals(age2));
 	}
 
 	/**
@@ -75,8 +94,14 @@ public class ValueObjectTest {
 		assertTrue(name.equals("Anne"));
 	}
 
+	/**
+	 * Dummy value object to exercise ValueObject methods
+	 *
+	 */
 	private static class Age extends ValueObject {
-		public int _value;
+		private static final long serialVersionUID = 1L;
+
+		private int _value;
 		private static final int MAX_AGE = 100;
 
 		private Age(int value) {
@@ -88,7 +113,7 @@ public class ValueObjectTest {
 			if (value < 0)
 				return Result.error("age cannot be negative");
 
-			if (value > 100)
+			if (value > MAX_AGE)
 				return Result.error("age cannot be more than -" + MAX_AGE);
 
 			return Result.ok(new Age(value));
